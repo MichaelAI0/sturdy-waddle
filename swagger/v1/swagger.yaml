@@ -19,22 +19,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": {
-                    "id": 33218,
-                    "email": "carmelo@olson-bailey.info",
-                    "first_name": "Tabitha",
-                    "last_name": "Hartmann",
-                    "name": "Tabitha Hartmann",
-                    "token": {
-                      "id": 36599,
-                      "created_at": "2023-01-27T19:34:48.320Z",
-                      "expiry": "2023-02-03T19:34:48.319Z",
-                      "ip": null,
-                      "revocation_date": null,
-                      "updated_at": "2023-01-27T19:34:48.320Z",
-                      "user_id": 33218,
-                      "value": "1Nkh2yGziXLmRUcBHcp6hmEwhQJ5p5tyk2"
-                    }
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      "id": 30712,
+                      "email": "maire.rempel@marks.net",
+                      "first_name": "Cesar",
+                      "last_name": "Bernhard",
+                      "name": "Cesar Bernhard",
+                      "token": {
+                        "id": 84643,
+                        "created_at": "2023-03-28 00:10:28 UTC",
+                        "expiry": "2023-04-04 00:10:28 UTC",
+                        "ip": null,
+                        "revocation_date": null,
+                        "updated_at": "2023-03-28 00:10:28 UTC",
+                        "user_id": 30712,
+                        "value": "1ArrYrqzWxDuCsKUy3fDfojDVtnr3CYVyN"
+                      }
+                    },
+                    "status": 200
                   }
                 }
               }
@@ -116,11 +120,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "id": 33218,
-                  "email": "carmelo@olson-bailey.info",
-                  "first_name": "Tabitha",
-                  "last_name": "Hartmann",
-                  "name": "Tabitha Hartmann"
+                  "example": {
+                    "payload": {
+                      "id": 30712,
+                      "email": "maire.rempel@marks.net",
+                      "first_name": "Cesar",
+                      "last_name": "Bernhard",
+                      "name": "Cesar Bernhard"
+                    },
+                    "status": 200
+                  }
                 }
               }
             }
@@ -152,12 +161,18 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "id": 33218,
-                  "email": "carmelo@olson-bailey.info",
-                  "first_name": "Tabitha",
-                  "last_name": "Hartmann",
-                  "name": "Tabitha Hartmann",
-                  "phone": "1615946227"
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      "id": 30712,
+                      "email": "maire.rempel@marks.net",
+                      "first_name": "Cesar",
+                      "last_name": "Bernhard",
+                      "name": "Cesar Bernhard",
+                      "phone": "8122900204"
+                    },
+                    "status": 201
+                  }
                 }
               }
             }
@@ -252,38 +267,38 @@
                 "properties": {
                   "id": {
                     "type": "integer",
-                    "example": 35103
+                    "example": 13751
                   },
                   "email": {
                     "type": "string",
-                    "example": "carolyn.hansen@gutkowski.net"
+                    "example": "jeremy@cartwright-goodwin.io"
                   },
                   "first_name": {
                     "type": "string",
-                    "example": "Andre"
+                    "example": "Amada"
                   },
                   "last_name": {
                     "type": "string",
-                    "example": "Shanahan"
+                    "example": "Pfeffer"
                   },
                   "name": {
                     "type": "string",
-                    "example": "Andre Shanahan"
+                    "example": "Amada Pfeffer"
                   },
                   "token": {
                     "type": "object",
                     "properties": {
                       "id": {
                         "type": "integer",
-                        "example": 80334
+                        "example": 31891
                       },
                       "created_at": {
                         "type": "string",
-                        "example": "2023-01-27 19:34:48 UTC"
+                        "example": "2023-03-28 00:10:28 UTC"
                       },
                       "expiry": {
                         "type": "string",
-                        "example": "2023-02-03 19:34:48 UTC"
+                        "example": "2023-04-04 00:10:28 UTC"
                       },
                       "ip": {
                         "type": "any",
@@ -295,15 +310,15 @@
                       },
                       "updated_at": {
                         "type": "string",
-                        "example": "2023-01-27 19:34:48 UTC"
+                        "example": "2023-03-28 00:10:28 UTC"
                       },
                       "user_id": {
                         "type": "integer",
-                        "example": 35103
+                        "example": 13751
                       },
                       "value": {
                         "type": "string",
-                        "example": "18271aBYLjZ8uCWuuRktL3ZJvhAWx1tiyM"
+                        "example": "1EvGrXTiF6RhhQwQmxMJAgayTzuSm9GGU6"
                       }
                     }
                   }
@@ -316,15 +331,15 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 80334
+                "example": 31891
               },
               "created_at": {
                 "type": "string",
-                "example": "2023-01-27 19:34:48 UTC"
+                "example": "2023-03-28 00:10:28 UTC"
               },
               "expiry": {
                 "type": "string",
-                "example": "2023-02-03 19:34:48 UTC"
+                "example": "2023-04-04 00:10:28 UTC"
               },
               "ip": {
                 "type": "any",
@@ -336,15 +351,15 @@
               },
               "updated_at": {
                 "type": "string",
-                "example": "2023-01-27 19:34:48 UTC"
+                "example": "2023-03-28 00:10:28 UTC"
               },
               "user_id": {
                 "type": "integer",
-                "example": 35103
+                "example": 13751
               },
               "value": {
                 "type": "string",
-                "example": "18271aBYLjZ8uCWuuRktL3ZJvhAWx1tiyM"
+                "example": "1EvGrXTiF6RhhQwQmxMJAgayTzuSm9GGU6"
               }
             }
           },
@@ -428,23 +443,23 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 35103
+                "example": 13751
               },
               "email": {
                 "type": "string",
-                "example": "carolyn.hansen@gutkowski.net"
+                "example": "jeremy@cartwright-goodwin.io"
               },
               "first_name": {
                 "type": "string",
-                "example": "Andre"
+                "example": "Amada"
               },
               "last_name": {
                 "type": "string",
-                "example": "Shanahan"
+                "example": "Pfeffer"
               },
               "name": {
                 "type": "string",
-                "example": "Andre Shanahan"
+                "example": "Amada Pfeffer"
               }
             }
           }
@@ -462,27 +477,27 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 35103
+                "example": 13751
               },
               "email": {
                 "type": "string",
-                "example": "carolyn.hansen@gutkowski.net"
+                "example": "jeremy@cartwright-goodwin.io"
               },
               "first_name": {
                 "type": "string",
-                "example": "Andre"
+                "example": "Amada"
               },
               "last_name": {
                 "type": "string",
-                "example": "Shanahan"
+                "example": "Pfeffer"
               },
               "name": {
                 "type": "string",
-                "example": "Andre Shanahan"
+                "example": "Amada Pfeffer"
               },
               "phone": {
                 "type": "string",
-                "example": "5035085086"
+                "example": "4922201341"
               }
             }
           }
