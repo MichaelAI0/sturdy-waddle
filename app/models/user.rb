@@ -26,6 +26,19 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles
 
+  # tweets, likes, retweets, followers, following
+  has_many :tweets, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_tweets, through: :likes, source: :tweet
+  has_many :retweets, dependent: :destroy
+  has_many :retweeted_tweets, through: :likes, source: :tweet
+
+  has_many :follows_as_follower, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followings, through: :follows_as_follower, source: :following
+
+  has_many :follows_as_following, class_name: 'Follow', foreign_key: 'following_id', dependent: :destroy
+  has_many :followers, through: :follows_as_following, source: :follower
+
   validates :email, uniqueness: true
 
   # scope :invite_not_expired, -> { where('invitation_expiration > ?', DateTime.now) }
