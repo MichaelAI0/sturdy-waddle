@@ -33,7 +33,7 @@ Rails.application.routes.draw do
           delete :unretweet
         end
       end
-      resources :likes
+      resources :likes, only: [:create, :destroy]
       resources :follows, only: [:create, :destroy]
     end
   end
