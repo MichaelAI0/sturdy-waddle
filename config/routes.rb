@@ -27,7 +27,15 @@ Rails.application.routes.draw do
         get :me
         post :create
       end
-      resources :tweets
+      resources :tweets do
+        member do
+          post :retweet
+          delete :unretweet
+        end
+      end
+      resources :likes
+      resources :follows, only: [:create, :destroy]
     end
   end
 end
+
