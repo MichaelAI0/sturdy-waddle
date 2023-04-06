@@ -4,7 +4,7 @@ module Api
       before_action :set_tweet
 
       def create
-        if @tweet.user == current_user
+        if @tweet.user == @current_user
           # User is trying to like their own tweet
           render_error(
             errors: "You cannot like your own tweet",
@@ -49,7 +49,7 @@ module Api
       private
 
       def set_tweet
-        @tweet = Tweet.find(params[:tweet_id])
+        @tweet = Tweet.find(params[:id])
       end
     end
   end
