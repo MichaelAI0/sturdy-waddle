@@ -49,7 +49,10 @@ module Api
       private
 
       def set_tweet
-        @tweet = Tweet.find(params[:id])
+        @tweet = Tweet.find_by(id: params[:tweet_id])
+        unless @tweet
+          render_error(errors: "Tweet not found", status: :not_found)
+        end
       end
     end
   end

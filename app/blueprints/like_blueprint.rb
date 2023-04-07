@@ -1,4 +1,4 @@
 class LikeBlueprint < Blueprinter::Base
   identifier :id
-  fields :created_at, :tweet
+  fields :user_id, :tweet
 end
