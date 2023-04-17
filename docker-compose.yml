@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres14:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_db_name
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg14_data:/var/lib/postgresql/data
+
+  postgres15:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_db_name
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg15_data:/var/lib/postgresql/data
+
+volumes:
+  pg14_data:
+  pg15_data:
