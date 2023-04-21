@@ -37,12 +37,19 @@ class User < ApplicationRecord
   has_many :retweeted_tweets, through: :retweets, source: :tweet
   has_many :retweeted_by, through: :retweets, source: :user
 
-  has_many :follows_as_follower, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :follows_as_follower,
+           class_name: "Follow",
+           foreign_key: "follower_id",
+           dependent: :destroy
   has_many :followings, through: :follows_as_follower, source: :following
-  has_many :follows_as_following, class_name: 'Follow', foreign_key: 'following_id', dependent: :destroy
+  has_many :follows_as_following,
+           class_name: "Follow",
+           foreign_key: "following_id",
+           dependent: :destroy
   has_many :followers, through: :follows_as_following, source: :follower
 
   validates :email, uniqueness: true
+  validates :street, :city, :state, :postal_code, :country, presence: true
 
   # scope :invite_not_expired, -> { where('invitation_expiration > ?', DateTime.now) }
   # scope :invite_token_is, ->(invitation_token) { where(invitation_token: invitation_token) }
@@ -53,12 +60,13 @@ class User < ApplicationRecord
   # after_commit :invite_user, if: :saved_change_to_invitation_token?
 
   def generate_token!(ip)
-    token = Token.create(
-      value: BaseApi::AccessToken.generate(self),
-      user_id: id,
-      expiry: DateTime.current + 7.days,
-      ip: ip
-    )
+    token =
+      Token.create(
+        value: BaseApi::AccessToken.generate(self),
+        user_id: id,
+        expiry: DateTime.current + 7.days,
+        ip: ip
+      )
   end
 
   def generate_invitation_token
@@ -71,11 +79,17 @@ class User < ApplicationRecord
   end
 
   def invitation_accepted_at!
-    update(invitation_accepted: true, invitation_token: nil, invitation_expiration: nil)
+    update(
+      invitation_accepted: true,
+      invitation_token: nil,
+      invitation_expiration: nil
+    )
   end
 
   def invitation_link
-    throw 'Environment Variable Not Found Error' if Rails.application.credentials.invitation[:url].nil?
+    if Rails.application.credentials.invitation[:url].nil?
+      throw "Environment Variable Not Found Error"
+    end
 
     url = Rails.application.credentials.invitation[:url]
     "#{url}#{invitation_token}"
@@ -89,34 +103,33 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
-    # Methods to be called by tweets, retweets, follows, etc.. controllers
-    
-    def like(tweet)
-      likes.create(tweet: tweet)
-    end
-  
-    def unlike(tweet)
-      likes.find_by(tweet: tweet).destroy
-    end
-  
-    def retweet(tweet)
-      retweets.create(tweet: tweet)
-    end
-  
-    def unretweet(tweet)
-      retweets.find_by(tweet: tweet).destroy
-    end
-  
-    def follow(user)
-      follows.create(following: user)
-    end
-  
-    def unfollow(user)
-      follows.find_by(following: user).destroy
-    end
-  
-    def following?(user)
-      followings.exists?(user.id)
-    end
+  # Methods to be called by tweets, retweets, follows, etc.. controllers
 
+  def like(tweet)
+    likes.create(tweet: tweet)
+  end
+
+  def unlike(tweet)
+    likes.find_by(tweet: tweet).destroy
+  end
+
+  def retweet(tweet)
+    retweets.create(tweet: tweet)
+  end
+
+  def unretweet(tweet)
+    retweets.find_by(tweet: tweet).destroy
+  end
+
+  def follow(user)
+    follows.create(following: user)
+  end
+
+  def unfollow(user)
+    follows.find_by(following: user).destroy
+  end
+
+  def following?(user)
+    followings.exists?(user.id)
+  end
 end
