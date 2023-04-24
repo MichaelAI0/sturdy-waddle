@@ -21,16 +21,21 @@ module Api
         render_success(payload: payload)
       end
 
+      # YOU SHOULD CHECK IF THE USER IS PRESENT OR NOT!!!!
       def logout
-        result = BaseApi::Auth.logout(@current_user, @token)
-        unless result.success?
-          render_error(
-            errors: "There was a problem logging out",
-            status: 401
-          ) and return
-        end
+        if @current_user.present?
+          result = BaseApi::Auth.logout(@current_user, @token)
+          unless result.success?
+            render_error(
+              errors: "There was a problem logging out",
+              status: 401
+            ) and return
+          end
 
-        render_success(payload: "You have been logged out", status: 200)
+          render_success(payload: "You have been logged out", status: 200)
+        else
+          render_error(errors: "Unauthorized", status: 401)
+        end
       end
 
       def create
