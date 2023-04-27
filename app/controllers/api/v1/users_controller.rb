@@ -60,6 +60,20 @@ module Api
         )
       end
 
+      def update
+        result = BaseApi::Users.update_user(@current_user.id, user_params)
+        unless result.success?
+          render_error(
+            errors: "There was a problem updating the user",
+            status: 400
+          ) and return
+        end
+        payload = {
+          user: UserBlueprint.render_as_hash(result.payload, view: :normal)
+        }
+        render_success(payload: payload, status: 200)
+      end
+
       def validate_invitation
         user =
           User
@@ -71,6 +85,22 @@ module Api
           render_error(errors: { validated: false, status: 401 }) and return
         end
         render_success(payload: { validated: true, status: 200 })
+      end
+
+      private
+
+      def user_params
+        params.permit(
+          :first_name,
+          :last_name,
+          :email,
+          :phone,
+          :country,
+          :street,
+          :city,
+          :state,
+          :postal_code
+        )
       end
     end
   end

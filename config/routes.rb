@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         delete :logout
         get :me
         post :create
+        patch :update
       end
       resources :tweets do
         member do

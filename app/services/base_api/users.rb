@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module BaseApi
   module Users
     def self.new_user(params)
@@ -21,6 +19,28 @@ module BaseApi
         user.save!
       rescue ActiveRecord::RecordInvalid => exception
         return ServiceContract.error("Error saving user.") unless user.valid?
+      end
+
+      ServiceContract.success(user)
+    end
+
+    def self.update_user(user_id, params)
+      user = User.find(user_id)
+      user.assign_attributes(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        email: params[:email],
+        phone: params[:phone],
+        country: params[:country],
+        street: params[:street],
+        city: params[:city],
+        state: params[:state],
+        postal_code: params[:postal_code]
+      )
+      begin
+        user.save!
+      rescue ActiveRecord::RecordInvalid => exception
+        return ServiceContract.error("Error updating user.") unless user.valid?
       end
 
       ServiceContract.success(user)
