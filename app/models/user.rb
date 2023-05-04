@@ -21,11 +21,14 @@
 
 # The model that represents the User
 class User < ApplicationRecord
+  # User Inform
   has_secure_password validations: true
   has_many :tokens
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_one_attached :avatar, optional: true, allow_blank: true
+  validates :email, uniqueness: true
+  validates :street, :city, :state, :postal_code, :country, presence: true
 
   # tweets, likes, retweets, followers, following
   has_many :tweets, dependent: :destroy
@@ -48,9 +51,6 @@ class User < ApplicationRecord
            foreign_key: "following_id",
            dependent: :destroy
   has_many :followers, through: :follows_as_following, source: :follower
-
-  validates :email, uniqueness: true
-  validates :street, :city, :state, :postal_code, :country, presence: true
 
   # scope :invite_not_expired, -> { where('invitation_expiration > ?', DateTime.now) }
   # scope :invite_token_is, ->(invitation_token) { where(invitation_token: invitation_token) }
